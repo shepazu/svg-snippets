@@ -1,0 +1,331 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="100%" height="100%" viewBox="0 0 300 300">
+
+  <title>Markers</title>
+  <style type="text/css">
+    text {
+       font-family: Verdana, sans-serif;
+    }
+
+    .arrowshape {
+      fill: lightsteelblue;
+      stroke: gray;
+      stroke-width: 3px;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+    }
+
+    .outlines {
+      fill: none;
+      stroke: none;
+    }
+
+    .new {
+      fill: white;
+      fill: lime;
+    }
+
+    .new-dark {
+      fill: dimgray;
+      fill: green;
+    }
+
+    .localapp {
+      fill: navajowhite;
+      stroke: orange;
+      stroke-width: 3px;
+    }
+
+    .webapp {
+      fill: gold;
+      stroke: orange;
+      stroke-width: 3px;
+    }
+
+    .serverapp {
+      fill: silver;
+      stroke: none;
+      stroke-width: 3px;
+    }
+
+    .new {
+      fill: lawngreen;
+      stroke: darkgreen;
+      stroke-width: 2px;
+    }
+
+    .new text{
+      fill: darkgreen;
+      stroke: none;
+    }
+
+    .reuse {
+      fill: lightsteelblue;
+      stroke: darkslateblue;
+      stroke-width: 2px;
+    }
+
+    .reuse text{
+      fill: darkslateblue;
+      stroke: none;
+    }
+
+    .idp {
+      stroke-width: 3px;
+      stroke-linejoin: round;
+    }
+
+    .idp text{
+      stroke: none;
+    }
+
+
+    .cloud {
+      fill: silver;
+      stroke: dimgray;
+    }
+
+    .cloud text{
+      fill: dimgray;
+      stroke: none;
+    }
+
+    .connect {
+      stroke-linecap: round;
+      fill: none;
+    }
+
+    .secure {
+      stroke: whitesmoke;
+      marker-start: url(#startArrow);
+      marker-end: url(#endArrow);
+    }
+
+    .insecure {
+      stroke: crimson;
+      marker-start: url(#startArrow-insecure);
+      marker-end: url(#endArrow-insecure);
+    }
+
+    .nonsecure {
+      stroke: hotpink;
+      marker-start: url(#startArrow-nonsecure);
+      marker-end: url(#endArrow-nonsecure);
+    }
+
+    .dot-arrow {
+      stroke: blue;
+      fill: none;
+      marker-start: url(#startDot);
+      marker-end: url(#endArrow);
+    }
+
+
+    .point-to-point {
+      stroke: gold;
+      fill: none;
+      stroke-linecap: round;
+      stroke-width: 5px;
+      marker-start: url(#mapPin);
+      marker-end: url(#mapPin);
+    }
+  </style>
+
+  <defs>
+
+    <marker id="mapPin" viewBox="-13 -6 37.5 30" markerUnits="strokeWidth"
+        refX="0" refY="0" markerWidth="10" markerHeight="20">
+        <path id="path_1" stroke-width="1" stroke-linejoin="round" stroke="gold" fill="yellow" d="M0,0 L-5.66,-15 A6.25,6.75 0 1,1 5.66,-15 Z M0,-20 A2,2 0 1,0 0,-16 A2,2 0 0,0 0,-20 Z"/>
+    </marker>
+
+    <marker id="endArrow" viewBox="-13 -6 37.5 30" markerUnits="strokeWidth"
+        refX="-4" refY="0" markerWidth="10" markerHeight="20" orient="auto"
+        stroke="blue" fill="blue"> fill="#606060"
+      <path id="endArrow-path" d="M-10,-5 L0,0 -10,5 Z" stroke-linejoin="round" stroke-linecap="round"/>
+    </marker>
+    <marker id="startDot" viewBox="-3 -3 6 6" markerUnits="strokeWidth"
+        refX="0" refY="0" markerWidth="3" markerHeight="3" orient="auto"
+        stroke="blue" fill="blue">
+      <circle cx="0" cy="0" r="3" fill="blue" stroke="none" />
+
+    </marker>
+
+    <marker id="startArrow" viewBox="-13 -6 37.5 30" markerUnits="strokeWidth"
+        refX="-4" refY="0" markerWidth="10" markerHeight="20" orient="auto"
+        stroke="whitesmoke" fill="whitesmoke">
+      <path id="startArrow-path" d="M0,-5 L-10,0 0,5 Z" stroke-linejoin="round" stroke-linecap="round"/>
+    </marker>
+
+    <marker id="endArrow-insecure" viewBox="-13 -6 37.5 30" markerUnits="strokeWidth"
+        refX="-4" refY="0" markerWidth="10" markerHeight="20" orient="auto"
+        stroke="crimson" fill="crimson">
+      <use xlink:href="#endArrow-path"/>
+    </marker>
+    <marker id="startArrow-insecure" viewBox="-13 -6 37.5 30" markerUnits="strokeWidth"
+        refX="-4" refY="0" markerWidth="10" markerHeight="20" orient="auto"
+        stroke="crimson" fill="crimson">
+      <use xlink:href="#startArrow-path"/>
+    </marker>
+
+    <marker id="endArrow-nonsecure" viewBox="-13 -6 37.5 30" markerUnits="strokeWidth"
+        refX="-4" refY="0" markerWidth="10" markerHeight="20" orient="auto"
+        stroke="hotpink" fill="hotpink">
+      <use xlink:href="#endArrow-path"/>
+    </marker>
+    <marker id="startArrow-nonsecure" viewBox="-13 -6 37.5 30" markerUnits="strokeWidth"
+        refX="-4" refY="0" markerWidth="10" markerHeight="20" orient="auto"
+        stroke="hotpink" fill="hotpink">
+      <use xlink:href="#startArrow-path"/>
+    </marker>
+
+    <path id="arrow" class="arrowshape" d="M-35,-25 V25 H-10 V45 L20,0 L-10,-45 V-25 Z"/>
+  </defs>
+
+  <g id="group_1" transform="translate(20,30)">
+    <path id="path_1" stroke-width="1" stroke-linejoin="round" stroke="gold" fill="yellow"
+       d="M0,0 L-5.66,-15 A6.25,6.75 0 1,1 5.66,-15 Z M0,-20 A2,2 0 1,0 0,-16 A2,2 0 0,0 0,-20 Z"/>
+  </g> A2,2 0 0,1 0,-20
+
+
+
+  <path id="bam-la-2" class="point-to-point" stroke-width="3" d="M98,102 Q175,150 238,80">
+    <title>Browser Account Manager to Webapp</title>
+  </path>
+
+  <path id="cloudidp-idsync" class="connect insecure" stroke-width="3" d="M75,81 Q74,122 123,182">
+    <title>Cloud ID Provider to ID Sync API</title>
+  </path>
+
+  <path class="dot-arrow" stroke-width="4" d="M56,12 Q125,35 150,102">
+     <title>Local Webapp Instance to Webapp Server</title>
+  </path>
+
+
+
+  <path id="bam-la-3" class="point-to-point" stroke-width="3" d="M98,232 Q175,150 238,220">
+    <title>Browser Account Manager to Webapp</title>
+  </path>
+
+  <g id="dynamic_line">
+  </g>
+
+  <script>
+    window.onload = function init () {
+      const lines = [
+        {
+          x1: 50,
+          y1: 270,
+          x2: 240,
+          y2: 270,
+          color: `royalblue`,
+          width: `3`
+        },
+        {
+          x1: 250,
+          y1: 20,
+          x2: 170,
+          y2: 70,
+          color: `darkgreen`,
+          width: `2`
+        }
+      ];
+      const container = document.getElementById(`dynamic_line`);
+      const connector = new DrawConnector( lines, container );
+    }
+
+    class DrawConnector {
+      constructor(data, container) {
+        this.svgns = `http://www.w3.org/2000/svg`;
+        this.data = data;
+        this.container = container;
+
+        this.init()
+      }
+
+      init () {
+        while (this.container.firstChild) {
+          this.container.firstChild.remove();
+        }
+
+        // this.container.appendChild(this.root);
+
+        this.create_markers();
+        this.draw_lines();
+      }
+
+      normalize_id ( id ) {
+        return id.replace(/^[^a-z]+|[^\w:.-]+/gi, ``);
+      }
+
+      create_markers () {
+        let defs = document.createElementNS(this.svgns, `defs`);
+        defs.id = `markers`;
+
+        this.data.forEach((line) => {
+
+          const id_color = this.normalize_id(line.color);
+
+          let dot_marker = document.createElementNS(this.svgns, `marker`);
+          dot_marker.id = `marker_dot-${id_color}`;
+          dot_marker.setAttribute(`viewBox`, `-3 -3 6 6`);
+          dot_marker.setAttribute(`markerUnits`, `strokeWidth`);
+          dot_marker.setAttribute(`markerWidth`, `2.8`);
+          dot_marker.setAttribute(`markerHeight`, `2.8`);
+          //dot_marker.setAttribute(`stroke`, line.color);
+          dot_marker.setAttribute(`fill`, line.color);
+
+          let dot = document.createElementNS(this.svgns, `circle`);
+          dot.setAttribute(`r`, 3 );
+          dot_marker.appendChild(dot);
+
+          defs.appendChild(dot_marker);
+
+          let arrow_marker = document.createElementNS(this.svgns, `marker`);
+          arrow_marker.id = `marker_arrow-${id_color}`;
+          arrow_marker.setAttribute(`viewBox`, `-13 -6 37.5 30`);
+          arrow_marker.setAttribute(`markerUnits`, `strokeWidth`);
+          arrow_marker.setAttribute(`refX`, `-4`);
+          arrow_marker.setAttribute(`refY`, `0`);
+          arrow_marker.setAttribute(`markerWidth`, `10`);
+          arrow_marker.setAttribute(`markerHeight`, `20`);
+          arrow_marker.setAttribute(`orient`, `auto`);
+          arrow_marker.setAttribute(`stroke`, line.color);
+          arrow_marker.setAttribute(`fill`, line.color);
+
+          let arrow = document.createElementNS(this.svgns, `path`);
+          arrow.setAttribute(`d`, `M-10,-5 L0,0 -10,5 Z`);
+          arrow.setAttribute(`stroke-linejoin`, `round`);
+          arrow.setAttribute(`stroke-linecap`, `round`);
+          arrow_marker.appendChild(arrow);
+
+          defs.appendChild(arrow_marker);
+        });
+
+        this.container.appendChild(defs);
+      }
+
+      draw_lines () {
+        //  create dataline group
+        this.data.forEach((line) => {
+          console.log(line);
+
+          const dot_ref = this.normalize_id(`marker_dot-${line.color}`);
+          const arrow_ref = this.normalize_id(`marker_arrow-${line.color}`);
+
+          const line_el = document.createElementNS(this.svgns, `path`);
+          line_el.setAttribute(`d`, `M${line.x1},${line.y1} L${line.x2},${line.y2}`);
+          line_el.setAttribute(`marker-start`, `url(#${dot_ref})`);
+          line_el.setAttribute(`marker-end`, `url(#${arrow_ref})`);
+          line_el.setAttribute(`stroke`, line.color);
+          line_el.setAttribute(`stroke-width`, line.width);
+          line_el.setAttribute(`stroke-linejoin`, `round`);
+          line_el.setAttribute(`stroke-linecap`, `round`);
+          line_el.setAttribute(`fill`, `none`);
+          this.container.appendChild(line_el);
+        });
+      }
+    }
+
+  </script>
+</svg>
