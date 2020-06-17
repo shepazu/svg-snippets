@@ -226,10 +226,11 @@
           y1: 20,
           x2: 170,
           y2: 70,
-          color: `darkgreen`,
+          color: `hsl(120, 100%, 20%)`,
           width: `2`
         }
       ];
+
       const container = document.getElementById(`dynamic_line`);
       const connector = new DrawConnector( lines, container );
     }
@@ -248,68 +249,66 @@
           this.container.firstChild.remove();
         }
 
-        // this.container.appendChild(this.root);
-
         this.create_markers();
         this.draw_lines();
       }
 
       normalize_id ( id ) {
+        // remove all characters not allowed in id values
         return id.replace(/^[^a-z]+|[^\w:.-]+/gi, ``);
       }
 
       create_markers () {
         let defs = document.createElementNS(this.svgns, `defs`);
         defs.id = `markers`;
+        this.container.appendChild(defs);
 
         this.data.forEach((line) => {
-
           const id_color = this.normalize_id(line.color);
+          // look for existing set of markers with this color, so it doesn't duplicate
+          const existing_marker = document.querySelector(`[id^="marker_"][id$="-${id_color}"]`);
+          if (!existing_marker) {
+            let dot_marker = document.createElementNS(this.svgns, `marker`);
+            dot_marker.id = `marker_dot-${id_color}`;
+            dot_marker.setAttribute(`viewBox`, `-3 -3 6 6`);
+            dot_marker.setAttribute(`markerUnits`, `strokeWidth`);
+            dot_marker.setAttribute(`markerWidth`, `2.8`);
+            dot_marker.setAttribute(`markerHeight`, `2.8`);
+            //dot_marker.setAttribute(`stroke`, line.color);
+            dot_marker.setAttribute(`fill`, line.color);
 
-          let dot_marker = document.createElementNS(this.svgns, `marker`);
-          dot_marker.id = `marker_dot-${id_color}`;
-          dot_marker.setAttribute(`viewBox`, `-3 -3 6 6`);
-          dot_marker.setAttribute(`markerUnits`, `strokeWidth`);
-          dot_marker.setAttribute(`markerWidth`, `2.8`);
-          dot_marker.setAttribute(`markerHeight`, `2.8`);
-          //dot_marker.setAttribute(`stroke`, line.color);
-          dot_marker.setAttribute(`fill`, line.color);
+            let dot = document.createElementNS(this.svgns, `circle`);
+            dot.setAttribute(`r`, 3 );
+            dot_marker.appendChild(dot);
 
-          let dot = document.createElementNS(this.svgns, `circle`);
-          dot.setAttribute(`r`, 3 );
-          dot_marker.appendChild(dot);
+            defs.appendChild(dot_marker);
 
-          defs.appendChild(dot_marker);
+            let arrow_marker = document.createElementNS(this.svgns, `marker`);
+            arrow_marker.id = `marker_arrow-${id_color}`;
+            arrow_marker.setAttribute(`viewBox`, `-13 -6 37.5 30`);
+            arrow_marker.setAttribute(`markerUnits`, `strokeWidth`);
+            arrow_marker.setAttribute(`refX`, `-4`);
+            arrow_marker.setAttribute(`refY`, `0`);
+            arrow_marker.setAttribute(`markerWidth`, `10`);
+            arrow_marker.setAttribute(`markerHeight`, `20`);
+            arrow_marker.setAttribute(`orient`, `auto`);
+            arrow_marker.setAttribute(`stroke`, line.color);
+            arrow_marker.setAttribute(`fill`, line.color);
 
-          let arrow_marker = document.createElementNS(this.svgns, `marker`);
-          arrow_marker.id = `marker_arrow-${id_color}`;
-          arrow_marker.setAttribute(`viewBox`, `-13 -6 37.5 30`);
-          arrow_marker.setAttribute(`markerUnits`, `strokeWidth`);
-          arrow_marker.setAttribute(`refX`, `-4`);
-          arrow_marker.setAttribute(`refY`, `0`);
-          arrow_marker.setAttribute(`markerWidth`, `10`);
-          arrow_marker.setAttribute(`markerHeight`, `20`);
-          arrow_marker.setAttribute(`orient`, `auto`);
-          arrow_marker.setAttribute(`stroke`, line.color);
-          arrow_marker.setAttribute(`fill`, line.color);
+            let arrow = document.createElementNS(this.svgns, `path`);
+            arrow.setAttribute(`d`, `M-10,-5 L0,0 -10,5 Z`);
+            arrow.setAttribute(`stroke-linejoin`, `round`);
+            arrow.setAttribute(`stroke-linecap`, `round`);
+            arrow_marker.appendChild(arrow);
 
-          let arrow = document.createElementNS(this.svgns, `path`);
-          arrow.setAttribute(`d`, `M-10,-5 L0,0 -10,5 Z`);
-          arrow.setAttribute(`stroke-linejoin`, `round`);
-          arrow.setAttribute(`stroke-linecap`, `round`);
-          arrow_marker.appendChild(arrow);
-
-          defs.appendChild(arrow_marker);
+            defs.appendChild(arrow_marker);
+          }
         });
-
-        this.container.appendChild(defs);
       }
 
       draw_lines () {
         //  create dataline group
         this.data.forEach((line) => {
-          console.log(line);
-
           const dot_ref = this.normalize_id(`marker_dot-${line.color}`);
           const arrow_ref = this.normalize_id(`marker_arrow-${line.color}`);
 
