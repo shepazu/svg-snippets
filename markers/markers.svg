@@ -227,7 +227,15 @@
           x2: 170,
           y2: 70,
           color: `hsl(120, 100%, 20%)`,
-          width: `2`
+          width: `5`
+        },
+        {
+          x1: 25,
+          y1: 50,
+          x2: 25,
+          y2: 170
+        },
+        {
         }
       ];
 
@@ -264,7 +272,8 @@
         this.container.appendChild(defs);
 
         this.data.forEach((line) => {
-          const id_color = this.normalize_id(line.color);
+          let color = line.color || `hsl(0, 0%, 20%)`;
+          const id_color = this.normalize_id(color);
           // look for existing set of markers with this color, so it doesn't duplicate
           const existing_marker = document.querySelector(`[id^="marker_"][id$="-${id_color}"]`);
           if (!existing_marker) {
@@ -274,8 +283,8 @@
             dot_marker.setAttribute(`markerUnits`, `strokeWidth`);
             dot_marker.setAttribute(`markerWidth`, `2.8`);
             dot_marker.setAttribute(`markerHeight`, `2.8`);
-            //dot_marker.setAttribute(`stroke`, line.color);
-            dot_marker.setAttribute(`fill`, line.color);
+            //dot_marker.setAttribute(`stroke`, color);
+            dot_marker.setAttribute(`fill`, color);
 
             let dot = document.createElementNS(this.svgns, `circle`);
             dot.setAttribute(`r`, 3 );
@@ -292,8 +301,8 @@
             arrow_marker.setAttribute(`markerWidth`, `10`);
             arrow_marker.setAttribute(`markerHeight`, `20`);
             arrow_marker.setAttribute(`orient`, `auto`);
-            arrow_marker.setAttribute(`stroke`, line.color);
-            arrow_marker.setAttribute(`fill`, line.color);
+            arrow_marker.setAttribute(`stroke`, color);
+            arrow_marker.setAttribute(`fill`, color);
 
             let arrow = document.createElementNS(this.svgns, `path`);
             arrow.setAttribute(`d`, `M-10,-5 L0,0 -10,5 Z`);
@@ -309,15 +318,16 @@
       draw_lines () {
         //  create dataline group
         this.data.forEach((line) => {
-          const dot_ref = this.normalize_id(`marker_dot-${line.color}`);
-          const arrow_ref = this.normalize_id(`marker_arrow-${line.color}`);
+          let color = line.color || `hsl(0, 0%, 20%)`;
+          const dot_ref = this.normalize_id(`marker_dot-${color}`);
+          const arrow_ref = this.normalize_id(`marker_arrow-${color}`);
 
           const line_el = document.createElementNS(this.svgns, `path`);
-          line_el.setAttribute(`d`, `M${line.x1},${line.y1} L${line.x2},${line.y2}`);
+          line_el.setAttribute(`d`, `M${line.x1 || 0},${line.y1 || 0} L${line.x2 || 0},${line.y2 || 0}`);
           line_el.setAttribute(`marker-start`, `url(#${dot_ref})`);
           line_el.setAttribute(`marker-end`, `url(#${arrow_ref})`);
-          line_el.setAttribute(`stroke`, line.color);
-          line_el.setAttribute(`stroke-width`, line.width);
+          line_el.setAttribute(`stroke`, color);
+          line_el.setAttribute(`stroke-width`, (line.width || 2));
           line_el.setAttribute(`stroke-linejoin`, `round`);
           line_el.setAttribute(`stroke-linecap`, `round`);
           line_el.setAttribute(`fill`, `none`);
