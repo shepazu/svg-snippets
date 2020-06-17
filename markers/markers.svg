@@ -236,6 +236,14 @@
           y2: 170
         },
         {
+        },
+        {
+          x1: 150,
+          y1: 20,
+          x2: 200,
+          y2: 20,
+          color: `royalblue`,
+          width: `3`
         }
       ];
 
@@ -275,7 +283,7 @@
           let color = line.color || `hsl(0, 0%, 20%)`;
           const id_color = this.normalize_id(color);
           // look for existing set of markers with this color, so it doesn't duplicate
-          const existing_marker = document.querySelector(`[id^="marker_"][id$="-${id_color}"]`);
+          const existing_marker = document.querySelector(`[id^=marker_][id$=-${id_color}]`);
           if (!existing_marker) {
             let dot_marker = document.createElementNS(this.svgns, `marker`);
             dot_marker.id = `marker_dot-${id_color}`;
